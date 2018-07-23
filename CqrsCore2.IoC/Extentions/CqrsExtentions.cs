@@ -10,11 +10,10 @@ namespace CqrsCore2.IoC.Extentions
 {
     public static class CqrsExtentions
     {
-        public static void AddCqrs(this IServiceCollection service, Func<AssemblyName, bool> filter = null)
+        public static void AddCqrs<T>(this IServiceCollection service, Func<AssemblyName, bool> filter = null, params Type[] handlers)
         {
-            var handlers = new[] { typeof(IQueryHandler<,>), typeof(ICommandHandler<>) };
 
-            var target = typeof(CqrsCore2Context).Assembly;
+            var target = typeof(T).Assembly;
             bool LoadFilters(AssemblyName x) => true;
 
             var assemblies = target.GetReferencedAssemblies()
