@@ -19,9 +19,14 @@ namespace CqrsCore2.SharedKernel.AutoMapper
                 .ToList();
             assembliesLoad.Add(target);
 
-            var types = assembliesLoad.SelectMany(a => a.GetExportedTypes());
+            var types = assembliesLoad.SelectMany(a => a.GetExportedTypes()).ToArray();
 
-            Mapper.Initialize(config => CustomMappings(config, types.ToArray()));
+            Mapper.Initialize(config =>
+            {
+                CustomMappings(config, types);
+                LoadIMapToMappings(config, types);
+                LoadIMapFromMappings(config, types);
+            });
         }
         private static void CustomMappings(IMapperConfigurationExpression config, Type[] types)
         {
