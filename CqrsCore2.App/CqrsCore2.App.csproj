@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CqrsCore2.Domain\CqrsCore2.Domain.csproj" />
+    <ProjectReference Include="..\CqrsCore2.SharedKernel\CqrsCore2.SharedKernel.csproj" />
+  </ItemGroup>
+
+</Project>
